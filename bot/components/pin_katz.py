@@ -1,7 +1,15 @@
 from .token import bot
 
-@bot.message_handler(func=lambda message: message.forward_from.username == "maximkatz")
+@bot.message_handler(content_types=['text'])
 def pin_kaz(message):
+    if message.forward_from_chat is not None:
+        if message.forward_from_chat.username == "maximkatz":
+            pass
+        else:
+            return
+    else:
+        return
+
     if isinstance(message.text, str):
         return
 
